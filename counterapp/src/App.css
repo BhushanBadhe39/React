@@ -1,0 +1,31 @@
+
+.counterText{
+  text-align: center;
+  font-size: 50px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight:800;
+  color: crimson;
+  text-shadow: 5px 5px 22px ;
+  margin: 50px;
+}
+
+
+.counter{
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 15px;
+  border: 2px solid #3b3b3b;
+  box-shadow: 2px 2px 1px #3b3b3b,-1px -1px 1px #3b3b3b;
+  border-radius: 6%;
+  width: max-content;
+}
+
+.counter button{
+  margin: 10px;
+}
+
+input{
+  margin: 0 10px;
+}

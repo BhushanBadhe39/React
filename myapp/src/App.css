@@ -1,0 +1,135 @@
+*{
+    background-color: #F2F2F7;
+    color: #8A85B6;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+#page-god{
+    padding: 80px 100px;
+}
+
+.right-nav{
+    float: right;
+    display: flex;
+    padding: 8px 24px;
+    width: min-content;
+    gap: 15px;
+}
+.right-nav img{
+    position: absolute;
+    top: 12.5px;
+    left: 12.5px;
+    width: 55.2px;
+    height: 55.2px;
+    border-radius: 50%;
+}
+.social{
+    position: relative;
+    width: 80.2px;
+    height: 80.2px;
+    border-radius: 50%;
+    box-shadow: -5px -5px 10px white, 5px 5px 10px #8A85B6;
+
+}
+.outer-box{
+    display: flex;
+    border: 0;
+    box-shadow: -3px -3px 4px inset white, 3px 3px 4px   inset #8A85B6;
+    width: min-content;
+    padding: 10px 30px;
+    border-radius: 60px;
+}
+
+.inner-box{
+    padding: 10px 30px;
+    font-size: 30px;
+}
+
+.selected{
+    box-shadow: -3px -3px 4px white, 3px 3px 4px #8A85B6;
+    border-radius: 60px;
+}
+
+.main-content{
+    display: flex;
+    gap: 20px;
+}
+
+#box-1{
+    width: 550px;
+    padding: 15px 45px 25px 45px;
+
+}
+
+.outer-box img{
+    width: 300px;
+    height: 300px;
+    border-radius: 60px;
+    margin: 10px 0px;
+}
+#box-2{
+    width: 300px;
+    padding: 5px 45px 25px 45px;
+}
+
+#box-2-inner{
+    width: min-content;
+    padding: 1px 25px;
+    text-align: center;
+}
+
+.selected h1{
+    font-size: 50px;
+    font-weight: 800;
+}
+
+#box-2>h2{
+    font-size: 40px;
+    font-weight: 700;
+}
+
+#box-3{
+    width: 360px;
+    height: 300px;
+    position: relative;
+}
+#box-4{
+    width: 250px;
+    padding: 15px 45px 25px 45px;
+    font-size: 20px;
+}
+
+#box-4>h2{
+    font-size: 40px;
+    font-weight: 700;
+}
+
+#box-5{
+    width: 470px;
+    padding: 15px 45px 25px 45px;
+    font-size: 20px;
+}
+
+#box-5>h2{
+    font-size: 40px;
+    font-weight: 700;
+}
+#box-5 span{
+    margin-right: 50px;
+}
+
+footer{
+    position: absolute;
+    bottom: 10;
+    padding: 10px 0px;
+    width: 100%;
+    background-color: #8A85B6;
+    color: #F2F2F7;
+    text-align: center;
+}

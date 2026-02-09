@@ -1,0 +1,406 @@
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                              TO Create a React Project:                              //
+//                             >npm create vite@latest appname                          //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+//--------------------------------------------------------------------------------------//
+//                                   To Run Project:                                    //
+//                                  >cd appname (Only Once)                             //
+//                                  >npm run dev                                        //
+//--------------------------------------------------------------------------------------//
+
+
+
+Flow:
+
+Index.html(root div)-->main.jsx(createroot by importing)-->app.jsx(main page)-->home.jsx(option/additional pages)(achieved by routing)
+
+
+---Component Name Should Always be Capital
+
+
+//<> is  react fragment----> used to return multiple lines, cuz 
+//You can function call as --> 'export default app' at end or while declaring as did below 
+
+//To put another jsx file in it as well, create another jsx file and write it like this <Home/> 
+//It will import itself as Well
+//Use it Directly in React Fragment
+
+//                                      26-12-2025                                      //
+
+
+
+• What is Jsx?
+--- JavaScript + XML        //XML - extensible markup language
+--- JSX is syntax extension for JS that allows you to Write HTML code inside JS.
+--- Used to make UI more Readable.
+
+
+• XML v/s HTML
+--- XML has used defined Tags
+
+
+//--------------------------------------------------------------------------------------//
+//               You Can Use JS code in jsx files above return statement.               //
+//--------------------------------------------------------------------------------------//
+
+
+
+• How to use variables in jsx files?
+--- JS-> const varName = ...;
+    Html-> {varName}            //use {} to indicate variables in html code section.
+
+
+• What are Components?
+--- Component in React is a reusable piece of user interface        //Block of JS Code
+--- Any JS function or class that takes input and returns jsx can be called a component.
+
+--- There are 2 types of Components: 
+        -- Function Based Component:    Any JS function() that returns jsx in react.
+        -- Class Based Component:    Any JS class that returns jsx in react. (Used in old React)
+
+
+---You Can Create Any number of functions in a single jsx file but only one export default function.
+
+        
+//--------------------------------------------------------------------------------------//
+//                     USE rfc for functional component boilerplate                     //
+//--------------------------------------------------------------------------------------//
+
+//--------------------------------------------------------------------------------------//
+//                       USE rcc for class component boilerplate                        //
+//--------------------------------------------------------------------------------------//
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                    PROPS *-later                                     //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+
+//--------------------------------------------------------------------------------------//
+//              Import CSS --> import "pathtocssfile" (create in assets folder)         //
+//--------------------------------------------------------------------------------------//
+
+--- Ways to use apply css on single file:
+
+**[Note:- If you apply Css on a Home.jsx and use it in App.jsx, the css file will Also apply on the App File.]**
+
+    -- Use id.
+    -- Put className on the main div of the file and use it in combination. Eg. .Home h1{}
+    -- name the css file as About.module.css and imprt itas style before using it in each element as className
+        Eg. <h1 className = {style.h11}>Hello</h1>
+
+
+//--------------------------------------------------------------------------------------//
+//                           Use State in React Application                             //
+//--------------------------------------------------------------------------------------//
+
+• What is a use state?
+--- Use state is a Hook in React that allows functional Components to hold and update state and triggering rerendering of the UI.
+//or
+--- It is a Hook in React that used to store and update data in functional components.
+
+• What are Hooks in React?
+--- A Hook in React is a special function that lets You use React features like use state, use effect,use params
+
+// ---- Syntax ------------
+const [state_variable,setState] = useState(initial_value)
+
+
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                        Props                                         //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+Props are properties that are used to pass data from parent component to child components.
+
+--- Props are read-only (Immutable)
+
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                Conditional Rendering                                 //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+• What is Conditional Rendering?
+--- Conditional Rendering is a powerful technique in React that allows you to dynamically display content based on certain conditions.
+
+
+
+// ---- Ternary Operator Syntax (for Conditional Rendering) ------------------------------
+
+--> condition ? trueExpression : falseExpression
+Eg. {isLoggedIn ? <Dashboard /> : <Login />}
+
+
+
+// AND Operator Syntax (for Conditional Rendering) ------------------------------
+--- Displays the expressionToRenderIfTrue only if the condition is true.
+
+--> condition && expressionToRenderIfTrue
+Eg. {isLoggedIn && <Dashboard />}
+
+
+
+// OR Operator Syntax (for Conditional Rendering) ------------------------------
+--- Displays the expressionToRenderIfFalse only if the condition is false.
+
+--> condition || expressionToRenderIfFalse
+Eg. {isLoggedIn || <Login />}
+
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                   Routing in React                                   //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+• React Router(v6) : is a powerful library in React for routing in React Applications.
+--- It allows navigation between different components. 
+>npm install react-router-dom
+
+--- Routes are used to wrap or bind components.
+--- It is just like html tag without refreshing the page.
+
+
+⇛ Step 1: Create Application
+--- Change directory to appname
+--- Install Router
+
+    >npm install react-router-dom
+
+
+⇛ Step 2: create folder named pages and components inside src folder.
+--- create pages like Home.jsx, About.jsx, Contact.jsx inside pages folder.
+--- create Navbar.jsx inside components folder.
+
+
+⇛ Step 3: Navigate using Link tag
+
+--> <Link to="/path">LinkName</Link>     // used to navigate without refreshing the page.
+>import { Link } from 'react-router-dom';
+
+---Link tag is used to create links in react application instead of anchor tag.
+---Use 'to' attribute instead of 'href' attribute in Link tag.
+
+⇛ Step 4: Setup Routes in App.jsx
+>import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+
+//                                       06/01/26                                       //
+
+• What is <Route> used for?
+--- <Route> is used to define route and render components.
+--- We can render components by using props element : props are path and element.
+
+• What is <Routes> used for?
+--- Used to define/group all <Route> inside it a.k.a.  <Routes> = <Route> container.
+
+• What is <BrowserRouter> used for?
+--- Used to enable routing in react.
+
+• What is <Outlet/> used for?
+//     --- if we are using nested routing, then we use outlet in parent component.      //
+
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                           Implementing 404 Not Found Page                            //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+⇛ Step 1: Create NotFound.jsx inside components folder.
+
+⇛ Step 2: Add Route for NotFound page in App.jsx
+
+--> <Route path="*" element={<NotFound />} /> 
+
+ // '*' indicates all undefined routes
+
+
+
+ //--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                    Nested Routing                                    //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+⇛ Step 1: Create Parent.jsx and Child.jsx inside pages folder.
+⇛ Step 2: Setup Routes in App.jsx
+--> <Route path="/parent" element={<Parent />}>
+        <Route path="child" element={<Child />} />
+    </Route>
+⇛ Step 3: Add Outlet in Parent.jsx
+--> import { Outlet } from 'react-router-dom';
+    ...
+    <div>
+        <h1>Parent Component</h1>
+        <Outlet />  // Renders the matched child route component here
+    </div>
+
+// ---- Use of Outlet is to render the matched child route component inside the parent component. ------------------------------
+
+
+//                                       07/01/26                                       //
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                             Use Params For dynamic Routing                           //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+• What is useParams ?
+--- It is a hook in React used to read dynamic parameters from the URL inside the function component.
+--- It returns an object containing key-value pairs of the route parameters.
+
+//  **************************************************************************************
+Eg. ...
+--> const {name} = useParams()
+** Meanwhile in App.jsx ** 
+    <Route path='/user/:name/' element = {<User/>}/>
+
+--- When Used in browser put /user/bhushan in link to use.
+//  **************************************************************************************
+
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                      UseEffect                                       //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+--- useEffect hook in react is used to handle side effects in functional components.
+--- It provide concise and powerful way to manage effects that depend on component lifecycle, such as data fetching, subscriptions, and manual DOM mutations.
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                        Controlled v/s Uncontrolled Components                        //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+• What is Controlled Components?
+--- React manages form element state (input,textarea, select), simplifying data management and validation.
+
+
+• What is Uncontrolled Components?
+--- React does not manage state, relying on the DOM for values.Ideal for simple forms.
+
+• Controlled v/s Uncontrolled Components: 
+--- Controlled components offer greater control, while uncontrolled are simpler, but less flexible.
+
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                    useRef() Hook                                     //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+• What is useRef() hook?
+--- The useRef() hook in React is used to create a mutable reference that persists across renders
+--- It allows you to directly access and manipulate DOM elements or store mutable values without causing re-renders.
+--- It is commonly used for accessing DOM elements, managing focus, and storing mutable values in functional components.
+
+Syntax:
+--> const refContainer = useRef(initialValue);
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                    useForm() hook                                    //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+
+• What is useForm hook's puspose?
+=> Simplify Form Management-------------------
+--- The useForm() hook streamlines form handling by managing state, validation,and submission of form data.
+
+--- By abstracting away the complexity of form management, useForm() can improve the performance and maintainabilityof your application.
+
+--- The useForm() hook can be easily shared across multiple components, promoting code reuse and consistency.
+
+• How to use useForm() hook?
+--- Install react-hook-form library:
+    >npm install react-hook-form
+--- Import useForm from react-hook-form:
+    --> import { useForm } from 'react-hook-form';
+--- Initialize useForm in your component:
+    --> const { register, handleSubmit, formState: { errors } } = useForm();
+--- Register form fields using the register function:
+    --> <input {...register('fieldName', { required: true })} />
+--- Handle form submission using handleSubmit:
+    --> <form onSubmit={handleSubmit(onSubmit)}></form>
+--- Access form errors using the errors object:
+    --> {errors.fieldName && <span>This field is required</span>}
+--- Define the onSubmit function to process form data:
+    --> const onSubmit = data => { console.log(data); };
+--- By following these steps, you can effectively use the useForm() hook to manage forms in your React applications.
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                   useReducer Hook                                    //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+• What is useReducer hook's puspose?
+--- A alternative of useState Hook.
+
+• What is Reducer?
+--- A pure function used for managing complex state logic in a predictable manner.
+--- A Reducer function takes the current state and an action as arguments, and returns the next state.
+
+• What is useReduce?
+--- The useReducer Hook integrates reducers into functional React components, providing the current state and a dispatch function to send actions.
+
+• How to use useReducer hook?
+    --> import { useReducer } from 'react';
+    --> const [state, dispatch] = useReducer(reducer, initialState);
+        - reducer: function that decides how state changes.
+        - initialState: starting state
+        - state: current state
+        - dispatch: function to send actions
+
+    --> const reducer = (state, action) => {
+            switch (action.type) {
+                case 'increment':
+                    return { count: state.count + 1 };
+                case 'decrement':
+                    return { count: state.count - 1 };
+                default:
+                    return state;
+            }
+        };
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                     useMemo Hook                                     //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+• What is Memoization?
+--- An optimation technique that stores previously computed results to avoid redundant calculations.
+
+• When to use?
+--- Apply when components re-render unnecessarily or when handling expensive computations.
+
+• useMemo Hook : -
+--- Memoizes expensive calculations to prevent re-execution unless dependencies change.
+
+Syntax:
+--> const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);

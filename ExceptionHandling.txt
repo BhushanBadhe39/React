@@ -1,0 +1,35 @@
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                        ERRORS                                        //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+# There are Two Types of Errors: 
+1. Syntax Errors: 
+    - These errors occur when the code violates the syntax rules of the programming language.
+    - Occur due to mistake of Programmer while writing the code.
+    - Examples include missing semicolons, unmatched parentheses, or incorrect indentation.
+
+2. Runtime Errors:
+    - These errors occur while the program is running and can cause the program to crash or behave unexpectedly.
+    - Examples include division by zero, null pointer dereferences, or file not found errors.
+    - Runtime errors are often harder to detect and debug since they may not occur consistently.
+
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                  Exception Handling                                  //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+
+• What is Exception Handling?
+    - Exception handling is a mechanism that allows programmers to handle runtime errors gracefully, without crashing the program.
+    - It involves using specific constructs to catch and handle exceptions when they occur.
+    - Use try and catch blocks to handle exceptions.
+
+• Why use Exception Handling?
+    - To prevent program crashes and ensure smooth execution.
+    - To provide meaningful error messages to users.
+    - To allow for recovery from errors and continue program execution.

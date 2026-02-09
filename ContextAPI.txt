@@ -1,0 +1,38 @@
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                      useContext                                      //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+• What is ContextAPI ? 
+--- A type of Hook.
+--- It provides a way to pass the data through the componenttree without having to pass down manually at every level.
+
+• Need of ContextAPI ? 
+--- For security of data we need to avoid the above approach to transfer data and data must be directly transferred to the component.
+
+# Steps Involved: - 
+
+    1) Create a context.
+    2) Provide context with a value and wrap the children component in a provider.
+    3) Consume the context value.
+
+            _______________
+            | App Component |
+                    |
+    ---------------------------------
+    |               |               |
+   ---             ---             ---
+   |A|             |B|             |C|
+                    |               |
+                   |D|             |E|
+                                    |
+                                   |F|
+
+
+⇛Step 1: - export const contextInfo = createContext();
+⇛Step 2: - <contextInfo.Provider value={name}>
+                <Child/>
+            </contextInfo.Provider>
+⇛Step 3: - import {contextInfo} from './Parent.jsx'     //In child or descendents
+⇛Step 4: - const name = useContext(contextInfo);        //In child or descendents

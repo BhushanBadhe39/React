@@ -1,0 +1,13 @@
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                            How to Make a github card list                            //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+⇛Step 1 : Create a .json for data and insert data as array of objects in it.
+⇛Step 2 : Create a Card.jsx component to display the data of a single user in a card.
+⇛Step 3 : Create a Cardlist.jsx component to display the list of Card.jsx components.
+    ⇛Step 3.1 : Import the test-data.json
+    ⇛Step 3.2 : use map to put the objects of testdata as props in card.
+    ⇛Step 3.1 : 
+
