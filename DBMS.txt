@@ -1,0 +1,494 @@
+• Introduction of ER Model
+--- The Entity-Relationship Model (ER Model) is a conceptual model for designing a database. This model represents the logical structure of a database, including entities, their attributes, and relationships between them.
+
+Entity: An object that is stored as data. E.g: Student, Course, or Company.
+Attribute: Properties that describe an entity. E.g: StudentID, CourseName, or EmployeeEmail.
+Relationship: A connection between entities. E.g: Student enrolls in a Course.
+
+
+
+• Use ER Diagrams In DBMS
+ER diagrams represent the E-R model in a database, making them easy to convert into relations (tables).
+These diagrams serve the purpose of real-world modeling of objects which makes them intently useful.
+Unlike technical schemas, ER diagrams require no technical knowledge of the underlying DBMS used.
+They visually model data and its relationships, making complex systems easier to understand.
+
+
+
+Types of MySQL Queries
+-- DDL -> Data Definition Language
+    --- CREATE, ALTER, DROP, TRUNCATE, RENAME
+
+-- DML -> Data Manipulation Language
+    --- INSERT, UPDATE, DELETE
+
+-- DCL -> Data Control Language
+    --- GRANT, REVOKE
+
+-- TCL -> Transaction Control Language
+    --- COMMIT, ROLLBACK, SAVEPOINT
+
+--- DQL -> Data Query Language
+    --- SELECT
+
+Create -> is used to create a new table in the database. It defines the structure of the table, including column names, data types, and constraints.
+
+Alter -> is used to modify the structure of an existing table. It allows you to add, delete, or modify columns in a table.
+        functions: Add, Drop, Modify, Rename, change, etc.
+
+Drop - > deletes an entire table. It removes the table structure and all its data from the database. Once a table is dropped, it cannot be recovered unless you have a backup.
+
+Truncate -> deletes all the records from a table but keeps the structure of the table intact. It is faster than drop because it does not log individual row deletions.
+
+Rename -> is used to change the name of an existing table in the database.
+
+Insert -> is used to add new records (rows) to a table. It allows you to specify the values for each column in the new record.
+
+Update -> is used to modify existing records in a table. It allows you to change the values of one or more columns for specific records based on a condition.
+
+Delete -> is used to remove existing records from a table. It allows you to specify which records to delete based on a condition.
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                     Constraints                                      //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+--- Constraints means we are applying a certain condition or restriction on the database. Before inserting data into the database we are checking for some conditions, if the condition we applied is true then the data is to be inserted.
+
+
+• Not Null
+--- Whenever a column is declared as not null, then the value of that column cannot be empty.
+
+Syntax:
+CREATE TABLE table_name (
+    column1 datatype NOT NULL,
+    column2 datatype,
+    ...
+);
+
+
+• Unique
+--- Used to restrict duplicate values
+
+
+• Primary Key
+--- it is a column that is used to identify unique records or rows from table. Each table contains only one primary key column. It is a combination of not null and unique constraint.
+
+Syntax:
+CREATE TABLE table_name (
+    column1 datatype PRIMARY KEY,
+    column2 datatype,
+    ...
+);
+
+--OR--
+
+CREATE TABLE table_name (
+    column1 datatype NOT NULL UNIQUE,
+    column2 datatype,
+    ...
+);
+
+
+• Default
+--- It is used to provide a default value for a column when no value is specified during insertion.
+
+Syntax:
+CREATE TABLE table_name (
+    column1 datatype DEFAULT default_value,
+    column2 datatype,
+    ...
+);
+
+
+• Check
+--- It is used to ensure that the value in a column meets a specific condition.
+
+Syntax:
+CREATE TABLE voters(
+    voter_id INT PRIMARY KEY,
+    age INT CHECK (age >= 18)
+);
+
+
+//                                        SELECT                                        //
+
+--- The SELECT statement is used to retrieve data from a database. It allows you to specify which columns you want to retrieve and from which table.
+
+Syntax:
+SELECT column1, column2, ...
+FROM table_name;
+
+where:
+- column1, column2, ...: The columns you want to retrieve. You can use * to select all columns.
+- table_name: The name of the table from which you want to retrieve data.
+
+• WHERE Clause
+--- The WHERE clause is used to filter records based on specific conditions. It allows you to specify criteria that the retrieved data must meet.
+
+//--------------------------------------------------------------------------------------//
+//                                      Operators                                       //
+//--------------------------------------------------------------------------------------//
+
+• Arithmetic Operators
+--- These operators are used to perform mathematical operations on numeric data. Common arithmetic operators include:
+- Addition (+)
+- Subtraction (-)
+- Multiplication (*)
+- Division (/)
+- Modulo (%)
+
+//  --------------------------------------------------------------------------------------
+• logical operators
+--- Logical operators are used to combine multiple conditions in a WHERE clause. Common logical operators include:
+- AND: Returns true if both conditions are true.
+- OR: Returns true if at least one condition is true.
+- NOT: Returns true if the condition is false.
+
+Example:
+SELECT * FROM employees
+WHERE salary > 60000 AND department = 'Sales';
+
+//  --------------------------------------------------------------------------------------
+• AS Keyword
+--- The AS keyword is used to rename a column or table in the result set of a query. It allows you to give a temporary name (alias) to a column or table for better readability.
+
+Syntax:
+SELECT column_name AS alias_name
+FROM table_name;
+
+Example:
+select id,name,salary,salary+5000 as new_salary from employees;
+
+	id	name    	    salary	    new_salary
+	1	Amit Sharma	    55000.00	60000.00
+	2	Priya Verma	    72000.00	77000.00
+	3	Rahul Mehta	    85000.00	90000.00
+	4	Neha Gupta	    60000.00	65000.00
+	5	Suresh Reddy	95000.00	100000.00
+
+//  --------------------------------------------------------------------------------------
+• List ->  In or Not In Operator
+--- The IN operator is used to specify multiple values in a WHERE clause. It allows you to check if a value matches any value in a list.
+
+Syntax:
+SELECT column_name(s) FROM table_name
+WHERE column_name IN (value1, value2, ...);
+
+//  --------------------------------------------------------------------------------------
+• Range -> Between Operator
+--- The BETWEEN operator is used to filter the result set within a certain range. It allows you to specify a range of values for a column.
+
+Syntax:
+SELECT column_name(s) FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+
+//  --------------------------------------------------------------------------------------
+• Like Operator
+--- The LIKE operator is used in a WHERE clause to search for a specified pattern in a column. It is often used with wildcard characters to match patterns in string data.
+
+Wildcard Characters:
+- %: Represents zero or more characters.
+- _: Represents a single character.
+
+Syntax:
+SELECT column_name(s) FROM table_name
+WHERE column_name LIKE pattern;
+
+⇛ Working of like operator:
+
+Example             Use
+a%                 Starts with 'a'
+%a                 Ends with 'a'
+%a%                Contains 'a'
+_a%                Starts with any single character, followed by 'a'
+%a_                Ends with 'a', preceded by any single character
+
+//  --------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                   String Functions                                   //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+• Upper() -> It is used to convert a string to uppercase.
+Syntax:
+SELECT UPPER(column_name) FROM table_name;
+
+• Lower() -> It is used to convert a string to lowercase.
+Syntax:
+SELECT LOWER(column_name) FROM table_name;
+
+• Concat() -> It is used to concatenate two or more strings together.
+Syntax:
+SELECT CONCAT(string1, string2, ...) AS alias_name FROM table_name;
+
+• Replace() -> It is used to search and replace all occurrences of a substring within a string with another substring.
+Syntax:
+SELECT REPLACE(column_name, 'old_string', 'new_string') AS alias_name FROM table_name;
+
+• Length() -> It is used to return the length of a string in characters.
+Syntax:
+SELECT LENGTH(column_name) AS alias_name FROM table_name;
+
+• Substring() -> It is used to extract a portion of a string.
+-- Needs start position and length of the substring to be extracted.
+Syntax:
+SELECT SUBSTRING(column_name, start_position, length) AS alias_name FROM table_name; 
+
+//--------------------------------------------------------------------------------------//
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                MATHEMATICAL FUNCTIONS                                //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+• Abs() -> It is used to return the absolute value of a number. (Only Positive Value)
+Syntax:
+SELECT ABS(column_name) AS alias_name FROM table_name;
+
+• Round() -> Used to return value of X rounded to whole integer.
+Syntax:
+SELECT ROUND(column_name) AS alias_name FROM table_name;
+
+• Sqrt() -> It is used to return the square root of a number.
+Syntax:
+SELECT SQRT(column_name) AS alias_name FROM table_name;
+
+• Power() -> It is used to return the value of X raised to the power of Y.
+Syntax:
+SELECT POWER(column_name, exponent) AS alias_name FROM table_name;
+
+• Ceil() -> It is used to return the smallest integer value that is greater than or equal to given number.
+Syntax:
+SELECT CEIL(column_name) AS alias_name FROM table_name;
+
+• Floor() -> It is used to return the largest integer value that is less than or equal to the given number.
+Syntax:
+SELECT FLOOR(column_name) AS alias_name FROM table_name;
+
+• Sign() -> It is used to return the sign of a number. It returns -1 for negative numbers, 0 for zero, and 1 for positive numbers.
+Syntax:
+SELECT SIGN(column_name) AS alias_name FROM table_name;
+
+//--------------------------------------------------------------------------------------//
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                    DATE FUNCTIONS                                    //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+• Now() -> It is used to return the current date and time.
+Syntax:
+SELECT NOW() AS current_datetime;
+
+• Curdate() -> It is used to return the current date. (YYYY-MM-DD)
+Syntax:
+SELECT CURDATE() AS current_date;
+
+• Curtime() -> It is used to return the current time. (HH:MM:SS)
+Syntax:
+SELECT CURTIME() AS current_time;
+
+• Date() -> It is used to extract the date from a date or datetime values.
+Syntax:
+SELECT DATE(column_name) AS date_only FROM table_name;
+
+• Extract() -> It is used to extract a specific part of a date, such as year, month, day, etc.
+Syntax:
+SELECT EXTRACT(part FROM column_name) AS alias_name FROM table_name;
+
+• Datediff() -> It is used to return the number of days between two date values.
+Syntax:
+SELECT DATEDIFF(date1, date2) AS days_difference FROM table_name;
+
+• Date_format() -> It is used to format a date value according to a specified format.
+Syntax:
+SELECT DATE_FORMAT(column_name, 'format') AS formatted_date FROM table_name;
+
+Format	    Description
+%a	  **    This abbreviation means weekday name. It's limit is from Sun to Sat.
+%b    **    This abbreviation means month name. It's limit is from Jan to Dec.
+%c	        This abbreviation means numeric month name. It's limit is from 0 to 12.
+%D	  **    This abbreviation means day of the month as a numeric value, followed by suffix like 1st, 2nd, etc.
+%e	        This abbreviation means day of the month as a numeric value. It's limit is from 0 to 31.
+%f	        This abbreviation means microseconds. It's limit is from 000000 to 999999.
+%H	        This abbreviation means hour. It's limit is from 00 to 23.
+%i	        This abbreviation means minutes. It's limit is from 00 to 59.
+%j	        This abbreviation means day of the year. It's limit is from 001 to 366.
+%M	  **    This abbreviation means month name from January to December.
+%p	        This abbreviation means AM or PM.
+%S	        This abbreviation means seconds. It's limit is from 00 to 59.
+%U	        This abbreviation means week where Sunday is the first day of the week. It's limit is from 00 to 53.
+%W	  **    This abbreviation means weekday name from Sunday to Saturday.
+%Y	  **    This abbreviation means year as a numeric value of 4-digits.
+
+• adddate() -> It is used to add a specified time interval to a date.
+Syntax:
+SELECT ADDDATE(date, INTERVAL value unit) AS new_date FROM table_name;
+
+//--------------------------------------------------------------------------------------//
+//                                                                                      //
+//                                AGGREGATION FUNCTIONS                                 //
+//                                                                                      //
+//--------------------------------------------------------------------------------------//
+
+--- Aggregate functions are used to perform calculation on multiple records but it returns a single value.
+--- There are five tupes of aggregate functions in MySQL:
+
+1. COUNT() -> It is used to return the number of rows that match a specified condition.
+Syntax:
+SELECT COUNT(column_name) AS alias_name FROM table_name WHERE condition;
+
+2. SUM() -> It is used to return the total sum of a numeric column.
+Syntax:
+SELECT SUM(column_name) AS alias_name FROM table_name WHERE condition;
+
+3. AVG() -> It is used to return the average value of a numeric column.
+Syntax:
+SELECT AVG(column_name) AS alias_name FROM table_name WHERE condition;
+
+4. MAX() -> It is used to return the maximum value of a column.
+Syntax:
+SELECT MAX(column_name) AS alias_name FROM table_name WHERE condition;
+
+5. MIN() -> It is used to return the minimum value of a column.
+Syntax:
+SELECT MIN(column_name) AS alias_name FROM table_name WHERE condition;
+
+
+//--------------------------------------------------------------------------------------//
+//                                   Order BY clause                                    //
+//--------------------------------------------------------------------------------------//
+
+--- It is used to sort data or records in ascending or descending order. By default, it sorts in ascending order.
+Syntax:
+SELECT column_name(s) FROM table_name
+ORDER BY column_name [ASC|DESC];
+
+//--------------------------------------------------------------------------------------//
+//                                    LIMIT Clause                                     //
+//--------------------------------------------------------------------------------------//
+
+--- It is used to specify the number of records to return from a query result.
+Syntax:
+SELECT column_name(s) FROM table_name
+LIMIT offset, number_of_records;
+
+//--------------------------------------------------------------------------------------//
+//                                   GROUP BY CLAUSE                                    //
+//--------------------------------------------------------------------------------------//
+--- It is used to group rows that have the same values in specified columns into summary rows, like "Find the number of employees in each department".
+Syntax:
+SELECT column_name(s), aggregate_function(column_name)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s);
+
+//--------------------------------------------------------------------------------------//
+//                                    HAVING CLAUSE                                     //
+//--------------------------------------------------------------------------------------//
+
+--- It is used to filter groups based on a specified condition.
+Syntax:
+SELECT column_name(s), aggregate_function(column_name)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+HAVING condition;
+
+** IMP Rule **
+before group by -> where condition is applied
+after group by -> having condition is applied
+
+** IMP Rule **
+Aggregate functions are compulsory in having clause.
+Aggregate functions cannot be used in the WHERE clause, but they can be used in the HAVING clause to filter groups based on aggregate values.
+
+DIfference between WHERE and HAVING clause:
+                        WHERE Clause	    |       HAVING Clause
+                    ------------------------|------------------------
+            Filters rows before grouping	| Filters groups after grouping
+            Cannot use aggregate functions	| Can use aggregate functions
+            Can be used without GROUP BY	| Must be used with GROUP BY
+Can be used in update and delete statements	| Cannot be used in update and delete statements
+
+
+
+//--------------------------------------------------------------------------------------//
+//                                         JOIN                                         //
+//--------------------------------------------------------------------------------------//
+
+--- A JOIN clause is used to combine rows from two or more tables based on a related column between them. 
+--- It allows you to retrieve data from multiple tables in a single query.
+
+# Types of JOINs:
+
+1. INNER JOIN: Returns records that have matching values in both tables.
+Syntax:
+SELECT column_name(s) FROM table1
+INNER JOIN table2
+ON table1.common_column = table2.common_column;
+
+
+2. LEFT JOIN (or LEFT OUTER JOIN): Returns all records from the left table and the matched records from the right table. If there is no match, the result is NULL on the right side.
+Syntax:
+SELECT column_name(s) FROM table1
+LEFT JOIN table2
+ON table1.common_column = table2.common_column;
+
+
+3. RIGHT JOIN (or RIGHT OUTER JOIN): Returns all records from the right table and the matched records from the left table. If there is no match, the result is NULL on the left side.
+Syntax:
+SELECT column_name(s) FROM table1
+RIGHT JOIN table2
+ON table1.common_column = table2.common_column;
+
+
+4. FULL OUTER JOIN: Returns all records when there is a match in either left or right table. If there is no match, the result is NULL on the side that does not have a match.
+Syntax:
+SELECT column_name(s) FROM table1
+FULL OUTER JOIN table2
+ON table1.common_column = table2.common_column;
+
+
+5. CROSS JOIN: Returns the Cartesian product of the two tables, meaning it returns all possible combinations of rows from both tables.
+Syntax:
+SELECT column_name(s) FROM table1
+CROSS JOIN table2;
+
+
+6. SELF JOIN: A self join is a regular join but the table is joined with itself. It is used to compare rows within the same table.
+Syntax:
+SELECT a.column_name, b.column_name
+FROM table_name a
+JOIN table_name b
+ON a.common_column = b.common_column
+WHERE condition;
+
+
+//--------------------------------------------------------------------------------------//
+//                                        UNION                                         //
+//--------------------------------------------------------------------------------------//
+
+- UNION: It is used to combine the result sets of two or more SELECT statements. It removes duplicate records from the result set.
+Syntax:
+SELECT column_name(s) FROM table1
+UNION
+SELECT column_name(s) FROM table2;
+
+
+//--------------------------------------------------------------------------------------//
+//                                       SubQuery                                       //
+//--------------------------------------------------------------------------------------//
+
+- Subquery: A subquery is a query nested inside another query. It is used to perform operations that require multiple steps, such as filtering results based on the results of another query.
+Syntax:
+SELECT column_name(s) FROM table_name
+WHERE column_name operator (SELECT column_name FROM table_name WHERE condition);
