@@ -45,8 +45,16 @@ Rename -> is used to change the name of an existing table in the database.
 Insert -> is used to add new records (rows) to a table. It allows you to specify the values for each column in the new record.
 
 Update -> is used to modify existing records in a table. It allows you to change the values of one or more columns for specific records based on a condition.
+syntax:
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
 
 Delete -> is used to remove existing records from a table. It allows you to specify which records to delete based on a condition.
+syntax:
+DELETE FROM table_name
+WHERE condition;
+
 
 
 //--------------------------------------------------------------------------------------//
@@ -127,6 +135,20 @@ where:
 
 • WHERE Clause
 --- The WHERE clause is used to filter records based on specific conditions. It allows you to specify criteria that the retrieved data must meet.
+
+// ---- CASE STATEMENT -------------------------------------------------------------------
+
+--- The CASE statement is used to create conditional logic in SQL queries.
+--- It allows you to return different values based on different conditions.
+Syntax:
+SELECT column_name,
+CASE
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    ...
+    ELSE resultN
+END AS alias_name
+FROM table_name;
 
 //--------------------------------------------------------------------------------------//
 //                                      Operators                                       //
@@ -492,3 +514,190 @@ SELECT column_name(s) FROM table2;
 Syntax:
 SELECT column_name(s) FROM table_name
 WHERE column_name operator (SELECT column_name FROM table_name WHERE condition);
+
+//--------------------------------------------------------------------------------------//
+//                                         VIEW                                         //
+//--------------------------------------------------------------------------------------//
+
+- View: A view is a virtual table that is based on the result set of a SELECT query.
+--- It does not store data itself but provides a way to look at data from one or more tables in a specific way.
+
+Syntax:
+CREATE VIEW view_name AS
+SELECT column_name(s) FROM table_name
+WHERE condition;
+
+
+//--------------------------------------------------------------------------------------//
+//                                   STORED PROCEDURE                                   //
+//--------------------------------------------------------------------------------------//
+
+- Stored Procedure: A stored Procedue is a set of SQL statements stored in the database that can be executed repeatedly.
+
+Syntax:
+DILIMITER //
+CREATE PROCEDURE procedure_name (parameters)
+BEGIN
+    -- SQL statements
+END//
+DELIMITER ;
+
+--- calling a stored procedure:
+CALL procedure_name(parameters);
+
+--- drop a stored procedure:
+DROP PROCEDURE procedure_name;
+
+
+- Delimiter: It is used to change the statement delimiter temporarily while creating a stored procedure. This is necessary because the default delimiter (;) is used to separate SQL statements, and we need to use it within the procedure definition without ending the procedure creation.
+
+- Parameters in stored procedures can be of three types:
+1. IN: Used to pass a value into the procedure.
+2. OUT: Used to return a value from the procedure.
+3. INOUT: Used to pass a value into the procedure and return a modified value back to the caller.
+
+--- @x for output parameter because we cannot directly print the output parameter, we need to store it in a user-defined variable and then print that variable. The user-defined variable is prefixed with @ symbol.
+
+//--------------------------------------------------------------------------------------//
+//                                Conditional Statements                                //
+//--------------------------------------------------------------------------------------//
+
+- IF Statement: It is used to execute a block of code based on a specified condition.
+- Elseif Statement: It is used to specify a new condition to test if the previous condition is false.
+- Else Statement: It is used to execute a block of code if all previous conditions are false
+
+Syntax:
+IF condition THEN
+    -- SQL statements
+ELSEIF condition THEN
+    -- SQL statements
+ELSE
+    -- SQL statements
+END IF;
+
+//--------------------------------------------------------------------------------------//
+//                                  Looping Statements                                  //
+//--------------------------------------------------------------------------------------//
+
+- WHILE Loop: It is used to execute a block of code repeatedly as long as a specified condition is true.
+Syntax:
+WHILE condition DO
+    -- SQL statements
+END WHILE;
+
+
+//--------------------------------------------------------------------------------------//
+//                                   STORED FUNCTIONS                                   //
+//--------------------------------------------------------------------------------------//
+
+- Stored Function: A stored function is similar to a stored procedure but it returns a single value. It can be used in SQL statements wherever an expression of the same data type is allowed.
+Syntax:
+DELIMITER //
+CREATE FUNCTION function_name (parameters) RETURNS data_type
+BEGIN
+    -- SQL statements
+    RETURN value;
+END//
+DELIMITER ;
+
+-- Example: 
+        select id,name,salary,ROUND(salary) as rounded_salary from employees;
+
+- deterministic function: A deterministic function always returns the same result for the same input parameters.
+syntax:
+CREATE FUNCTION function_name (parameters) RETURNS data_type
+DETERMINISTIC
+BEGIN
+    -- SQL statements
+    RETURN value;
+END;
+
+
+//--------------------------------------------------------------------------------------//
+//                                        CURSOR                                        //
+//--------------------------------------------------------------------------------------//
+
+- Cursor: A cursor is a database object used to retrieve, manipulate, and navigate through a result set one row at a time. It allows you to process individual rows returned by a query.
+
+• Steps to use a cursor:
+1. Declare the cursor: Define the cursor and the SQL query that will be used to retrieve the result set.
+2. Open the cursor: Execute the SQL query and populate the cursor with the result set.
+3. Fetch data from the cursor: Retrieve rows from the cursor one at a time and process them as needed.
+4. Process the data: Perform any necessary operations on the fetched data.
+5. Close the cursor: Release the resources associated with the cursor once you are done processing the data.
+
+Syntax:
+DECLARE cursor_name CURSOR FOR
+SELECT column_name(s) FROM table_name WHERE condition;
+
+OPEN cursor_name;
+FETCH cursor_name INTO variable1, variable2, ...;
+-- Process the data as needed
+CLOSE cursor_name;
+
+• Label Loop: It is used to define a block of code that can be repeatedly executed using a cursor. It allows you to control the flow of execution within the loop.
+Syntax:
+label_name: LOOP
+    -- SQL statements
+END LOOP label_name;
+
+
+
+//--------------------------------------------------------------------------------------//
+//                                       TRIGGER                                        //
+//--------------------------------------------------------------------------------------//
+
+- Trigger: A trigger is a database object that automatically executes when any DML operation (INSERT, UPDATE, DELETE) is performed on a specified table.
+--- Triggers can be used to enforce business rules, maintain data integrity, and perform auditing tasks.
+
+Syntax:
+CREATE TRIGGER trigger_name
+trigger_time trigger_event
+ON table_name
+FOR EACH ROW
+BEGIN
+    -- SQL statements
+END;
+
+Where:
+- trigger_name: The name of the trigger.
+- trigger_time: Specifies when the trigger should be executed (BEFORE or AFTER).
+- trigger_event: Specifies the event that will activate the trigger (INSERT, UPDATE, or DELETE).
+- table_name: The name of the table on which the trigger is defined.
+
+Real Life Example:
+
+Bank Account Table:
+CREATE TABLE bank_account (
+    account_id INT PRIMARY KEY,
+    account_holder VARCHAR(100),
+    balance DECIMAL(10, 2)
+);
+
+-- Trigger to prevent overdraft
+CREATE TRIGGER prevent_overdraft
+BEFORE UPDATE ON bank_account
+FOR EACH ROW
+BEGIN
+    IF NEW.balance < 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Overdraft not allowed';
+    END IF;
+END;
+
+Bank Statement Example:
+CREATE TABLE bank_statement (
+    statement_id INT PRIMARY KEY,
+    account_id INT,
+    transaction_date DATE,
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (account_id) REFERENCES bank_account(account_id)
+);
+
+Create Trigger to log transactions
+CREATE TRIGGER log_transaction
+AFTER INSERT ON bank_statement
+FOR EACH ROW
+BEGIN
+    INSERT INTO transaction_log (account_id, transaction_date, amount)
+    VALUES (NEW.account_id, NEW.transaction_date, NEW.amount);
+END;
