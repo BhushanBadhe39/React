@@ -652,11 +652,10 @@ END LOOP label_name;
 
 Syntax:
 CREATE TRIGGER trigger_name
-trigger_time trigger_event
-ON table_name
+trigger_event trigger_time ON table_name
 FOR EACH ROW
 BEGIN
-    -- SQL statements
+    -- SQL statements to be executed when the trigger is activated
 END;
 
 Where:
@@ -701,3 +700,68 @@ BEGIN
     INSERT INTO transaction_log (account_id, transaction_date, amount)
     VALUES (NEW.account_id, NEW.transaction_date, NEW.amount);
 END;
+
+
+Keywords:
+- OLD: Refers to the existing value of a column before an UPDATE or DELETE.
+- NEW: Refers to the new value of a column after an INSERT or UPDATE.
+
+
+//--------------------------------------------------------------------------------------//
+//                                     FOREIGN KEY                                      //
+//--------------------------------------------------------------------------------------//
+
+- Foreign Key is a field or column in one table that refers to the primary key in another table.
+--- It is used to establish relation between the data in two tables.
+
+Syntax:
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    ...
+    FOREIGN KEY (column_name) REFERENCES parent_table(parent_column)
+);
+
+ALTER TABLE table_name
+ADD FOREIGN KEY (column_name) REFERENCES parent_table(parent_column);
+
+
+
+//--------------------------------------------------------------------------------------//
+//                                     TRANSACTIONS                                     //
+//--------------------------------------------------------------------------------------//
+
+- Transaction: A transaction is a sequence of one or more SQL operations that are executed as a single unit of work. It ensures that either all operations are completed successfully or none of them are applied to the database, maintaining data integrity.
+
+- COMMIT: It is used to save all the changes made during the current transaction. Once a COMMIT statement is executed, the changes become permanent and cannot be rolled back.
+
+Syntax:
+COMMIT;
+
+Example:
+START TRANSACTION;
+UPDATE bank_account SET balance = balance - 100 WHERE account_id = 1;
+UPDATE bank_account SET balance = balance + 100 WHERE account_id = 2;
+COMMIT;
+
+- ROLLBACK: It is used to undo all the changes made during the current transaction. If an error occurs or if you want to discard the changes, you can use ROLLBACK to revert the database to its previous state.
+Syntax:
+ROLLBACK;
+
+Example:
+START TRANSACTION;
+UPDATE bank_account SET balance = balance - 100 WHERE account_id = 1;
+UPDATE bank_account SET balance = balance + 100 WHERE account_id = 2;
+ROLLBACK;
+
+- SAVEPOINT: It is used to set a savepoint within a transaction. A savepoint allows you to roll back to a specific point in the transaction without rolling back the entire transaction.
+Syntax:
+SAVEPOINT savepoint_name;
+
+Example:
+START TRANSACTION;
+UPDATE bank_account SET balance = balance - 100 WHERE account_id = 1;
+SAVEPOINT before_update;
+UPDATE bank_account SET balance = balance + 100 WHERE account_id = 2;
+ROLLBACK TO SAVEPOINT before_update;
+COMMIT;
